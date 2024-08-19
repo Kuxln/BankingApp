@@ -19,8 +19,8 @@ import java.util.Date
     ]
 )
 data class BankAccountEntity(
-    @PrimaryKey(autoGenerate = true) val bankAccountId: Long,
-    @ColumnInfo(name = "client_id") val clientId: Long,
+    @PrimaryKey(autoGenerate = true) val bankAccountId: Int,
+    @ColumnInfo(name = "client_id") val clientId: Int,
     @ColumnInfo(name = "balance") val balance: Double = 0.0,
     @ColumnInfo(name = "start_date") val startDate: Date,
     @ColumnInfo(name = "end_date") val endDate: Date? = null,

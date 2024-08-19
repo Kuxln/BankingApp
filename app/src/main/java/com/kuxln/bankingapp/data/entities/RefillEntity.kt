@@ -18,17 +18,17 @@ import java.util.Date
         ),
         ForeignKey(
             entity = RefillTypeEntity::class,
-            parentColumns = arrayOf("refillTypeId"),
-            childColumns = arrayOf("refillTypeId"),
+            parentColumns = arrayOf("refillTypeName"),
+            childColumns = arrayOf("refillTypeName"),
             onUpdate = ForeignKey.CASCADE,
             onDelete = ForeignKey.CASCADE,
         )
     ]
 )
 data class RefillEntity(
-    @PrimaryKey val refillId: Long,
-    @ColumnInfo(name = "bank_account_id") val bankAccountId: Long,
-    @ColumnInfo(name = "refill_type_id") val refillTypeId: Long,
+    @PrimaryKey val refillId: Int,
+    @ColumnInfo(name = "bank_account_id") val bankAccountId: Int,
+    @ColumnInfo(name = "refill_type_name") val refillTypeName: String,
     @ColumnInfo(name = "info") val info: String? = null,
     @ColumnInfo(name = "amount") val amount: Double,
     @ColumnInfo(name = "date") val date: Date,
