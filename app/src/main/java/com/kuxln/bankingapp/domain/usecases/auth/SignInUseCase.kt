@@ -3,8 +3,12 @@ package com.kuxln.bankingapp.domain.usecases.auth
 import com.kuxln.bankingapp.data.repository.base.ClientRepository
 import javax.inject.Inject
 
-class SignUpUseCase @Inject constructor(
+class SignInUseCase @Inject constructor(
     private val clientRepository: ClientRepository
-
 ) {
+    suspend operator fun invoke(login: String, password: String) {
+        //todo hashing password
+
+        clientRepository.login(login, password)
+    }
 }
