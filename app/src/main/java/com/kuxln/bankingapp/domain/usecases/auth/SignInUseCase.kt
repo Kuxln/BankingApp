@@ -7,8 +7,6 @@ class SignInUseCase @Inject constructor(
     private val clientRepository: ClientRepository
 ) {
     suspend operator fun invoke(login: String, password: String) {
-        //todo hashing password
-
-        clientRepository.login(login, password)
+        clientRepository.signIn(login, password)
     }
 }

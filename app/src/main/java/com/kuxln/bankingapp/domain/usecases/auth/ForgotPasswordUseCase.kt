@@ -7,6 +7,6 @@ class ForgotPasswordUseCase @Inject constructor(
     private val clientRepository: ClientRepository
 ) {
     suspend operator fun invoke(login: String, password: String) {
-        clientRepository.changePassword(login, password)
+        clientRepository.changePasswordOnForgot(login, password)
     }
 }
