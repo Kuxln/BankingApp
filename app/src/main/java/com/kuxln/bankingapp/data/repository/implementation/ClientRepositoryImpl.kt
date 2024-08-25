@@ -17,37 +17,27 @@ class ClientRepositoryImpl @Inject constructor(
 
     override suspend fun signUp(client: ClientEntity) {
         val clientFromDB = dao.findClientByLogin(client.login)
-        if (clientFromDB != null) {
-            throw ClientAlreadyExistsException()
-        } else {
-            dao.createClient(
-                client.copy(
-                    password = client.password.getHash()
-                )
+        if (clientFromDB != null) throw ClientAlreadyExistsException()
+        dao.createClient(
+            client.copy(
+                password = client.password.getHash()
             )
-        }
+        )
     }
 
     override suspend fun signIn(login: String, password: String): Int {
         val clientFromDB = dao.findClientByLoginAndPassword(login, password.getHash())
-        if (clientFromDB != null) {
-            return clientFromDB.clientId
-        } else {
-            throw ClientNotFoundException()
-        }
+            ?: throw ClientNotFoundException()
+        return clientFromDB.clientId
     }
 
     override suspend fun changePasswordOnForgot(login: String, newPassword: String) {
-        val clientFromDB = dao.findClientByLogin(login)
-        if (clientFromDB != null) {
-            dao.updateClient(
-                clientFromDB.copy(
-                    password = newPassword.getHash()
-                )
+        val clientFromDB = dao.findClientByLogin(login) ?: throw ClientNotFoundException()
+        dao.updateClient(
+            clientFromDB.copy(
+                password = newPassword.getHash()
             )
-        } else {
-            throw ClientNotFoundException()
-        }
+        )
     }
 
     override suspend fun changeLogin(clientId: Int, newLogin: String) {
@@ -148,11 +138,7 @@ class ClientRepositoryImpl @Inject constructor(
         clientId: Int,
         updateFun: (clientFromDB: ClientEntity) -> Unit
     ) {
-        val clientFromDB = dao.findClientById(clientId)
-        if (clientFromDB != null) {
-            updateFun(clientFromDB)
-        } else {
-            throw ClientNotFoundException()
-        }
+        val clientFromDB = dao.findClientById(clientId) ?: throw ClientNotFoundException()
+        updateFun(clientFromDB)
     }
 }

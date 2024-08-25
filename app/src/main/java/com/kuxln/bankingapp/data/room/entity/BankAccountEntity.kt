@@ -21,6 +21,7 @@ import java.util.Date
 data class BankAccountEntity(
     @PrimaryKey(autoGenerate = true) val bankAccountId: Int = 0,
     val clientId: Int,
+    @ColumnInfo(name = "bank_account_number") val bankAccountNumber: Long,
     @ColumnInfo(name = "balance") val balance: Double = 0.0,
     @ColumnInfo(name = "start_date") val startDateMillis: Long,
     @ColumnInfo(name = "end_date") val endDateMillis: Long? = null,

@@ -1,6 +1,5 @@
 package com.kuxln.bankingapp.data.repository.implementation
 
-import com.kuxln.bankingapp.data.room.dao.RefillDAO
 import com.kuxln.bankingapp.data.repository.base.RefillRepository
 import javax.inject.Inject
 

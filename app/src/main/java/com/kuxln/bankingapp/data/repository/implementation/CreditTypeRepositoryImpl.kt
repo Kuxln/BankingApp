@@ -1,6 +1,5 @@
 package com.kuxln.bankingapp.data.repository.implementation
 
-import com.kuxln.bankingapp.data.room.dao.CreditTypeDAO
 import com.kuxln.bankingapp.data.repository.base.CreditTypeRepository
 import javax.inject.Inject
 
