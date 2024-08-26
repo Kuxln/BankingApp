@@ -13,11 +13,13 @@ class CardAdapter(
 
     inner class CardViewHolder(
         private val binding: ListItemCardBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
+    ) : RecyclerView.ViewHolder(binding.cardView) {
 
         fun bind(position: Int) {
+            val balanceMetadata = "${dataSet[position].balance.toInt()} UAH"
+
             binding.tvCardNumber.text = dataSet[position].bankAccountNumber.toString()
-            binding.tvCardMoneyQuantity.text = dataSet[position].balance.toString()
+            binding.tvCardMoneyQuantity.text = balanceMetadata
             binding.tvExpirationDate.text = "06/2033"
         }
     }
@@ -49,7 +51,7 @@ class CardAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
-        val binding = ListItemCardBinding.inflate(LayoutInflater.from(parent.context))
+        val binding = ListItemCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CardViewHolder(binding)
     }
 

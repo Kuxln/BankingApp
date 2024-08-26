@@ -9,8 +9,11 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface BankAccountDAO {
 
+    @Query("SELECT COUNT(*) FROM bank_account")
+    suspend fun countBankAccounts(): Int
+
     @Query("SELECT * FROM bank_account WHERE clientId = :clientId")
-    suspend fun getAllBankAccounts(clientId: Int): Flow<List<BankAccountEntity>>
+    fun getAllBankAccounts(clientId: Int): Flow<List<BankAccountEntity>>
 //
 //    suspend fun refill(bankAccountId: Int, quantity: Int)
 //

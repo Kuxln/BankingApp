@@ -9,12 +9,25 @@
         android:id="@+id/button_all_cards_and_accounts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="All cards and accounts"/>
+        android:text="All cards and accounts"
+        android:layout_gravity="center"
+        android:textSize="24sp"
+        android:textColor="@color/black"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_all_cards"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/list_item_card"/>
+        tools:listitem="@layout/list_item_card"
+        tools:itemCount="2"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/button_add_new_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add new card"
+        android:layout_gravity="center"
+        android:textSize="24sp"
+        android:textColor="@color/black"/>
 
 </LinearLayout>

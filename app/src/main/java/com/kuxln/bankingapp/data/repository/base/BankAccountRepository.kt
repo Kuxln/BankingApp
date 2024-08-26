@@ -5,6 +5,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface BankAccountRepository {
 
+    suspend fun countBankAccounts(): Int
+
     suspend fun getAllBankAccounts(clientId: Int): Flow<List<BankAccountEntity>>
 
     suspend fun refill(bankAccountId: Int, quantity: Int)

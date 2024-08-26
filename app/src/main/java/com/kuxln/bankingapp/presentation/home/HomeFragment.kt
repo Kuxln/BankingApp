@@ -8,8 +8,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.SnapHelper
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.kuxln.bankingapp.R
+import com.kuxln.bankingapp.data.room.entity.BankAccountEntity
 import com.kuxln.bankingapp.databinding.FragmentHomeBinding
 import com.kuxln.bankingapp.presentation.core.ui.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,6 +29,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         binding.rvAllCards.layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvAllCards.adapter = cardAdapter
+        LinearSnapHelper().attachToRecyclerView(binding.rvAllCards)
+
+        binding.buttonAddNewCard.setOnClickListener {
+            viewModel.onCreateNewCardClicked()
+        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {

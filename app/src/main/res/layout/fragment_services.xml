@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_deposits"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:backgroundTint="@color/main_deposit"
+        android:text="Deposits" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_credits"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:backgroundTint="@color/main_credit"
+        android:text="Credits" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_transfer"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:backgroundTint="@color/main_transfer"
+        android:text="Transfer to another card" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_refill"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:backgroundTint="@color/main_refill"
+        android:text="Refill" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_withdraw"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:backgroundTint="@color/main_withdraw"
+        android:text="Withdraw money" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_client_settings"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:backgroundTint="@color/main_about_client"
+        android:text="Client's settings" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

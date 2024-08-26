@@ -1,28 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android">
-<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--    xmlns:tools="http://schemas.android.com/tools"-->
-<!--    android:id="@+id/nav_graph"-->
-<!--    app:startDestination="@id/FirstFragment">-->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/home_dest">
 
-<!--    <fragment-->
-<!--        android:id="@+id/FirstFragment"-->
-<!--        android:name="com.kuxln.bankingapp.FirstFragment"-->
-<!--        android:label="@string/first_fragment_label"-->
-<!--        tools:layout="@layout/fragment_first">-->
+    <fragment
+        android:id="@+id/home_dest"
+        android:name="com.kuxln.bankingapp.presentation.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home" />
 
-<!--        <action-->
-<!--            android:id="@+id/action_FirstFragment_to_SecondFragment"-->
-<!--            app:destination="@id/SecondFragment" />-->
-<!--    </fragment>-->
-<!--    <fragment-->
-<!--        android:id="@+id/SecondFragment"-->
-<!--        android:name="com.kuxln.bankingapp.SecondFragment"-->
-<!--        android:label="@string/second_fragment_label"-->
-<!--        tools:layout="@layout/fragment_second">-->
+    <fragment
+        android:id="@+id/services_dest"
+        android:name="com.kuxln.bankingapp.presentation.services.ServicesFragment"
+        android:label="ServicesFragment"
+        tools:layout="@layout/fragment_services" >
 
-<!--        <action-->
-<!--            android:id="@+id/action_SecondFragment_to_FirstFragment"-->
-<!--            app:destination="@id/FirstFragment" />-->
-<!--    </fragment>-->
+    </fragment>
+
+    <fragment
+        android:id="@+id/about_client_dest"
+        android:name="com.kuxln.bankingapp.presentation.services.aboutclient.AboutClientFragment"
+        android:label="AboutClientFragment"
+        tools:layout="@layout/fragment_about_client" />
+
+    <fragment
+        android:id="@+id/credits_dest"
+        android:name="com.kuxln.bankingapp.presentation.services.credits.CreditsFragment"
+        android:label="CreditsFragment"
+        tools:layout="@layout/fragment_credits" />
+
+    <fragment
+        android:id="@+id/deposits_dest"
+        android:name="com.kuxln.bankingapp.presentation.services.deposits.DepositsFragment"
+        android:label="DepositsFragment"
+        tools:layout="@layout/fragment_deposits" />
+
+    <fragment
+        android:id="@+id/refill_dest"
+        android:name="com.kuxln.bankingapp.presentation.services.refill.RefillFragment"
+        android:label="RefillFragment"
+        tools:layout="@layout/fragment_refill" />
+
+    <fragment
+        android:id="@+id/transfer_dest"
+        android:name="com.kuxln.bankingapp.presentation.services.transfer.TransferFragment"
+        android:label="TransferFragment"
+        tools:layout="@layout/fragment_transfer" />
+
+    <fragment
+        android:id="@+id/withdraw_dest"
+        android:name="com.kuxln.bankingapp.presentation.services.withdraw.WithdrawFragment"
+        android:label="WithdrawFragment"
+        tools:layout="@layout/fragment_withdraw" />
+
 </navigation>

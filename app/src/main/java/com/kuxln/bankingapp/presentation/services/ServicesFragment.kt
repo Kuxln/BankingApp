@@ -16,5 +16,33 @@ class ServicesFragment: BaseFragment<FragmentServicesBinding>(R.layout.fragment_
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentServicesBinding.bind(view)
+
+        setupListeners()
+    }
+
+    private fun setupListeners() {
+        binding.buttonRefill.setOnClickListener {
+
+        }
+
+        binding.buttonWithdraw.setOnClickListener {
+
+        }
+
+        binding.buttonCredits.setOnClickListener {
+
+        }
+
+        binding.buttonDeposits.setOnClickListener {
+
+        }
+
+        binding.buttonTransfer.setOnClickListener {
+
+        }
+
+        binding.buttonClientSettings.setOnClickListener {
+
+        }
     }
 }

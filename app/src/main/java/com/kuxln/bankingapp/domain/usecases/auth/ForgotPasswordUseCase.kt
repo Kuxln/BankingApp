@@ -6,6 +6,7 @@ import javax.inject.Inject
 class ForgotPasswordUseCase @Inject constructor(
     private val clientRepository: ClientRepository
 ) {
+
     suspend operator fun invoke(login: String, password: String) {
         clientRepository.changePasswordOnForgot(login, password)
     }
