@@ -6,4 +6,13 @@ plugins {
     id("com.google.devtools.ksp") version "2.0.10-1.0.24" apply false
     kotlin("kapt") version "2.0.0"
     alias(libs.plugins.jetbrains.kotlin.jvm) apply false
+
+}
+buildscript {
+    repositories {
+        google()
+    }
+    dependencies {
+        classpath(libs.androidx.navigation.safe.args.gradle.plugin)
+    }
 }

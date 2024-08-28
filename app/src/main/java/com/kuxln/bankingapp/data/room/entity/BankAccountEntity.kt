@@ -25,4 +25,5 @@ data class BankAccountEntity(
     @ColumnInfo(name = "balance") val balance: Double = 0.0,
     @ColumnInfo(name = "start_date") val startDateMillis: Long,
     @ColumnInfo(name = "end_date") val endDateMillis: Long? = null,
+    @ColumnInfo(name = "color_id") val colorId: Int = 0
 )

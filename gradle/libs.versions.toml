@@ -14,6 +14,7 @@ jetbrainsKotlinJvm = "2.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-navigation-safe-args-gradle-plugin = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigationFragmentKtx" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version = "2.6.1" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version = "2.6.1" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version = "2.6.1" }

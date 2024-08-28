@@ -2,44 +2,60 @@ package com.kuxln.bankingapp.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.navigation.ActivityNavigator
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.kuxln.bankingapp.R
 import com.kuxln.bankingapp.databinding.ActivityMainBinding
-import com.kuxln.bankingapp.presentation.home.HomeFragment
-import com.kuxln.bankingapp.presentation.services.ServicesFragment
+import com.kuxln.bankingapp.presentation.core.ui.setGone
+import com.kuxln.bankingapp.presentation.core.ui.setVisible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(R.layout.activity_main) {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val homeFragment = HomeFragment()
-        val servicesFragment = ServicesFragment()
-        showFragment(homeFragment)
 
-        binding.bottomNavigationBar.setOnItemSelectedListener { item ->
-            when(item.itemId) {
-                R.id.home -> {
-                    showFragment(homeFragment)
-                }
+        setupNavController()
+    }
 
-                R.id.services -> {
-                    showFragment(servicesFragment)
-                }
-            }
-            true
+    fun onDestinationChanged() {
+        configureToolbarVisibility()
+    }
+
+    private fun setupNavController() {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = navHostFragment.navController
+        binding.bottomNavigationBar.setupWithNavController(navController)
+    }
+
+    private fun configureToolbarVisibility() = with(binding) {
+        if (navController.currentDestination?.id == R.id.home_dest || navController.currentDestination?.id == R.id.services_dest) {
+            hideToolbarNavigationIcon()
+        } else {
+            showToolbarNavigationIcon()
         }
     }
 
-    private fun showFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container_view, fragment, fragment::class.java.name)
-            .show(fragment)
-            .commit()
+    private fun showToolbarNavigationIcon() = with(binding) {
+        toolbar.navigationIcon = AppCompatResources.getDrawable(this@MainActivity, R.drawable.ic_24_arrow_back)
+        toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
+    }
+
+    private fun hideToolbarNavigationIcon() = with(binding) {
+        toolbar.navigationIcon = null
     }
 }
