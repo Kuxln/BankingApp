@@ -11,4 +11,9 @@
     <color name="main_credit">#3992E4</color>
     <color name="main_deposit">#E418F3</color>
     <color name="main_about_client">#A098A5</color>
+    <color name="main_card_dark_red">#8B0000</color>
+    <color name="main_card_dark_orange">#FF8C00</color>
+    <color name="main_card_dark_green">#2E8B57</color>
+    <color name="main_card_dark_magenta">#8B008B</color>
+    <color name="main_card_dark_blue">#191970</color>
 </resources>

@@ -23,18 +23,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentHomeBinding.bind(view)
-        binding.rvAllCards.layoutManager =
-            LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         homeCardAdapter = HomeCardAdapter(listOf())
         binding.rvAllCards.adapter = homeCardAdapter
         LinearSnapHelper().attachToRecyclerView(binding.rvAllCards)
 
-        binding.buttonAddNewCard.setOnClickListener {
-            viewModel.onCreateNewCardClicked()
-        }
 
         binding.buttonAllCardsAndAccounts.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeToAllCardsDest()
+            //todo
+            val action = HomeFragmentDirections.homeDestToAllCardsDest(1)
             findNavController().navigate(action)
         }
 

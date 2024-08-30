@@ -22,32 +22,32 @@ class ServicesFragment : BaseFragment<FragmentServicesBinding>(R.layout.fragment
 
     private fun setupListeners() {
         binding.buttonRefill.setOnClickListener {
-            val action = ServicesFragmentDirections.actionToRefillDest()
+            val action = ServicesFragmentDirections.servicesDestToRefillDest(1)
             findNavController().navigate(action)
         }
 
         binding.buttonWithdraw.setOnClickListener {
-            val action = ServicesFragmentDirections.actionToWithdrawDest()
+            val action = ServicesFragmentDirections.servicesDestToWithdrawDest(1)
             findNavController().navigate(action)
         }
 
         binding.buttonCredits.setOnClickListener {
-            val action = ServicesFragmentDirections.actionToCreditsDest()
+            val action = ServicesFragmentDirections.servicesDestToCreditsDest(1)
             findNavController().navigate(action)
         }
 
         binding.buttonDeposits.setOnClickListener {
-            val action = ServicesFragmentDirections.actionToDepositsDest()
+            val action = ServicesFragmentDirections.servicesDestToDepositsDest(1)
             findNavController().navigate(action)
         }
 
         binding.buttonTransfer.setOnClickListener {
-            val action = ServicesFragmentDirections.actionToTransferDest()
+            val action = ServicesFragmentDirections.servicesDestToTransferDest(1)
             findNavController().navigate(action)
         }
 
         binding.buttonClientSettings.setOnClickListener {
-            val action = ServicesFragmentDirections.actionToAboutClientDest()
+            val action = ServicesFragmentDirections.servicesDestToAboutClientDest(1)
             findNavController().navigate(action)
         }
     }

@@ -32,11 +32,4 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
-
-
-    fun onCreateNewCardClicked() {
-        viewModelScope.launch {
-            bankAccountRepository.createBankAccount(1)
-        }
-    }
 }

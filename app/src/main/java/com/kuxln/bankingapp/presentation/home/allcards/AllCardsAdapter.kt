@@ -1,29 +1,27 @@
 package com.kuxln.bankingapp.presentation.home.allcards
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.kuxln.bankingapp.data.room.entity.BankAccountEntity
-import com.kuxln.bankingapp.databinding.ListItemCardBinding
+import com.kuxln.bankingapp.databinding.ListItemCardExpandedBinding
 
 class AllCardsAdapter(
     private var dataSet: List<BankAccountEntity>,
-) : RecyclerView.Adapter<AllCardsAdapter.CardViewHolder>() {
+) : RecyclerView.Adapter<AllCardsAdapter.CardExpandedViewHolder>() {
 
-    inner class CardViewHolder(
-        private val binding: ListItemCardBinding
-    ) : RecyclerView.ViewHolder(binding.cardView) {
+    inner class CardExpandedViewHolder(
+        private val binding: ListItemCardExpandedBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(position: Int) {
             val balanceMetadata = "${dataSet[position].balance.toInt()} UAH"
-            val cardBackgroundColor = Color.GREEN
-
-            binding.cardView.setCardBackgroundColor(cardBackgroundColor)
+//            val cardBackgroundColor = Color.GREEN
+//
+//            binding.cardView.setCardBackgroundColor(cardBackgroundColor)
             binding.tvCardNumber.text = dataSet[position].bankAccountNumber.toString()
-            binding.tvCardMoneyQuantity.text = balanceMetadata
-            binding.tvExpirationDate.text = "06/2033"
+            binding.tvMoneyQuantity.text = balanceMetadata
         }
     }
 
@@ -53,15 +51,15 @@ class AllCardsAdapter(
         diffResult.dispatchUpdatesTo(this)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardExpandedViewHolder {
         val binding =
-            ListItemCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return CardViewHolder(binding)
+            ListItemCardExpandedBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CardExpandedViewHolder(binding)
     }
 
     override fun getItemCount(): Int = dataSet.size
 
-    override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CardExpandedViewHolder, position: Int) {
         holder.bind(position)
     }
 }

@@ -16,6 +16,8 @@ class BankAccountRepositoryImpl @Inject constructor(
 
     override suspend fun countBankAccounts(): Int = dao.countBankAccounts()
 
+    override suspend fun getNewBankAccountNumber(): Long = 4149_0000_0000_0000 + countBankAccounts() + 1
+
     override suspend fun getAllBankAccounts(clientId: Int): Flow<List<BankAccountEntity>> {
         return dao.getAllBankAccounts(clientId)
     }
@@ -28,11 +30,12 @@ class BankAccountRepositoryImpl @Inject constructor(
 //        dao.withdraw(bankAccountId, quantity)
     }
 
-    override suspend fun createBankAccount(clientId: Int) {
+    override suspend fun createBankAccount(clientId: Int, colorId: Int) {
         val newBankAccount = BankAccountEntity(
             clientId = clientId,
             bankAccountNumber = 4149_0000_0000_0000 + countBankAccounts() + 1,
-            startDateMillis = System.currentTimeMillis()
+            startDateMillis = System.currentTimeMillis(),
+            colorId = colorId
         )
         dao.createBankAccount(newBankAccount)
     }

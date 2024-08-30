@@ -1,6 +1,5 @@
 package com.kuxln.bankingapp.presentation.home
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -17,11 +16,12 @@ class HomeCardAdapter(
     ) : RecyclerView.ViewHolder(binding.cardView) {
 
         fun bind(position: Int) {
-            val balanceMetadata = "${dataSet[position].balance.toInt()} UAH"
-            val cardBackgroundColor = Color.GREEN
+            val currentElementData = dataSet[position]
+            val balanceMetadata = "${currentElementData.balance.toInt()} UAH"
+            val cardBackgroundColor = this.binding.root.context.getColor(currentElementData.colorId)
 
             binding.cardView.setCardBackgroundColor(cardBackgroundColor)
-            binding.tvCardNumber.text = dataSet[position].bankAccountNumber.toString()
+            binding.tvCardNumber.text = currentElementData.bankAccountNumber.toString()
             binding.tvCardMoneyQuantity.text = balanceMetadata
             binding.tvExpirationDate.text = "06/2033"
         }

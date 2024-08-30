@@ -12,15 +12,37 @@
         tools:layout="@layout/fragment_home">
 
         <action
-            android:id="@+id/action_home_to_all_cards_dest"
+            android:id="@+id/home_dest_to_all_cards_dest"
             app:destination="@id/all_cards_dest" />
+
     </fragment>
 
-    <fragment android:id="@+id/all_cards_dest"
-        android:label="AllCardsFragment"
+    <fragment
+        android:id="@+id/all_cards_dest"
         android:name="com.kuxln.bankingapp.presentation.home.allcards.AllCardsFragment"
-            tools:layout="@layout/fragment_all_cards"/>
+        android:label="AllCardsFragment"
+        tools:layout="@layout/fragment_all_cards">
 
+        <argument
+            android:name="client_id"
+            app:argType="integer" />
+
+        <action
+            android:id="@+id/all_cards_dest_to_add_new_card_dest"
+            app:destination="@id/add_new_card_dest" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/add_new_card_dest"
+        android:name="com.kuxln.bankingapp.presentation.home.allcards.addnewcard.AddNewCardFragment"
+        android:label="AllCardsFragment"
+        tools:layout="@layout/fragment_add_new_card">
+
+        <argument
+            android:name="client_id"
+            app:argType="integer" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/services_dest"
@@ -29,59 +51,100 @@
         tools:layout="@layout/fragment_services">
 
         <action
-            android:id="@+id/action_to_about_client_dest"
+            android:id="@+id/services_dest_to_about_client_dest"
             app:destination="@id/about_client_dest" />
+
         <action
-            android:id="@+id/action_to_transfer_dest"
+            android:id="@+id/services_dest_to_transfer_dest"
             app:destination="@id/transfer_dest" />
+
         <action
-            android:id="@+id/action_to_refill_dest"
+            android:id="@+id/services_dest_to_refill_dest"
             app:destination="@id/refill_dest" />
+
         <action
-            android:id="@+id/action_to_deposits_dest"
+            android:id="@+id/services_dest_to_deposits_dest"
             app:destination="@id/deposits_dest" />
+
         <action
-            android:id="@+id/action_to_withdraw_dest"
+            android:id="@+id/services_dest_to_withdraw_dest"
             app:destination="@id/withdraw_dest" />
+
         <action
-            android:id="@+id/action_to_credits_dest"
+            android:id="@+id/services_dest_to_credits_dest"
             app:destination="@id/credits_dest" />
+
     </fragment>
 
     <fragment
         android:id="@+id/about_client_dest"
         android:name="com.kuxln.bankingapp.presentation.services.aboutclient.AboutClientFragment"
         android:label="AboutClientFragment"
-        tools:layout="@layout/fragment_about_client" />
+        tools:layout="@layout/fragment_about_client">
+
+        <argument
+            android:name="client_id"
+            app:argType="integer" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/credits_dest"
         android:name="com.kuxln.bankingapp.presentation.services.credits.CreditsFragment"
         android:label="CreditsFragment"
-        tools:layout="@layout/fragment_credits" />
+        tools:layout="@layout/fragment_credits">
+
+        <argument
+            android:name="client_id"
+            app:argType="integer" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/deposits_dest"
         android:name="com.kuxln.bankingapp.presentation.services.deposits.DepositsFragment"
         android:label="DepositsFragment"
-        tools:layout="@layout/fragment_deposits" />
+        tools:layout="@layout/fragment_deposits">
+
+        <argument
+            android:name="client_id"
+            app:argType="integer" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/refill_dest"
         android:name="com.kuxln.bankingapp.presentation.services.refill.RefillFragment"
         android:label="RefillFragment"
-        tools:layout="@layout/fragment_refill" />
+        tools:layout="@layout/fragment_refill">
+
+        <argument
+            android:name="client_id"
+            app:argType="integer" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/transfer_dest"
         android:name="com.kuxln.bankingapp.presentation.services.transfer.TransferFragment"
         android:label="TransferFragment"
-        tools:layout="@layout/fragment_transfer" />
+        tools:layout="@layout/fragment_transfer">
+
+        <argument
+            android:name="client_id"
+            app:argType="integer" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/withdraw_dest"
         android:name="com.kuxln.bankingapp.presentation.services.withdraw.WithdrawFragment"
         android:label="WithdrawFragment"
-        tools:layout="@layout/fragment_withdraw" />
+        tools:layout="@layout/fragment_withdraw">
+
+        <argument
+            android:name="client_id"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

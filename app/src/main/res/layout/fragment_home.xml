@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <com.google.android.material.textview.MaterialTextView
@@ -19,16 +20,9 @@
         android:id="@+id/rv_all_cards"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="horizontal"
         tools:listitem="@layout/list_item_card"
         tools:itemCount="2"/>
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/button_add_new_card"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add new card"
-        android:layout_gravity="center"
-        android:textSize="24sp"
-        android:textColor="@color/black"/>
 
 </LinearLayout>
