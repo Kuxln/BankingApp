@@ -17,8 +17,8 @@ import androidx.room.PrimaryKey
         ),
         ForeignKey(
             entity = RefillTypeEntity::class,
-            parentColumns = arrayOf("refillTypeName"),
-            childColumns = arrayOf("refillTypeName"),
+            parentColumns = arrayOf("refillTypeId"),
+            childColumns = arrayOf("refillTypeId"),
             onUpdate = ForeignKey.CASCADE,
             onDelete = ForeignKey.CASCADE,
         )
@@ -27,7 +27,7 @@ import androidx.room.PrimaryKey
 data class RefillEntity(
     @PrimaryKey(autoGenerate = true) val refillId: Int = 0,
     val bankAccountId: Int,
-    val refillTypeName: String,
+    val refillTypeId: Int,
     @ColumnInfo(name = "info") val info: String? = null,
     @ColumnInfo(name = "amount") val amount: Double,
     @ColumnInfo(name = "date") val dateMillis: Long,

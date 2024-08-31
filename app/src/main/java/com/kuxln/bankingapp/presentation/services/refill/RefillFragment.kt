@@ -2,46 +2,53 @@ package com.kuxln.bankingapp.presentation.services.refill
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import com.kuxln.bankingapp.R
 import com.kuxln.bankingapp.data.room.entity.BankAccountEntity
-import com.kuxln.bankingapp.databinding.FragmentAboutClientBinding
-import com.kuxln.bankingapp.databinding.FragmentCreditsBinding
-import com.kuxln.bankingapp.databinding.FragmentDepositsBinding
 import com.kuxln.bankingapp.databinding.FragmentRefillBinding
 import com.kuxln.bankingapp.presentation.core.ui.BaseFragment
-import com.kuxln.bankingapp.presentation.home.allcards.AllCardsAdapter
+import com.kuxln.bankingapp.presentation.core.adapters.AllCardsAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RefillFragment : BaseFragment<FragmentRefillBinding>(R.layout.fragment_refill) {
 
-//    private val viewModel: *** by viewModels()
+    private val viewModel: RefillViewModel by viewModels()
+    private val allCardsAdapter = AllCardsAdapter(
+        listOf(),
+        onClick = {
+            viewModel.onCardSelected(it)
+            Toast.makeText(requireActivity(), "Card selected", Toast.LENGTH_SHORT).show()
+        }
+    )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentRefillBinding.bind(view)
-        binding.rvAllCards.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
-        binding.rvAllCards.adapter = AllCardsAdapter(
-            listOf(
-                BankAccountEntity(
-                    clientId = 1,
-                    bankAccountNumber = 4149_0000_0000_0001,
-                    balance = 1337.0,
-                    startDateMillis = System.currentTimeMillis()
-                ),
-                BankAccountEntity(
-                    clientId = 1,
-                    bankAccountNumber = 4149_0000_0000_0002,
-                    balance = 1000000.0,
-                    startDateMillis = System.currentTimeMillis()
-                ),
-                BankAccountEntity(
-                    clientId = 1,
-                    bankAccountNumber = 4149_0000_0000_0003,
-                    balance = 1.0,
-                    startDateMillis = System.currentTimeMillis()
-                )
-            )
-        )
+        binding.rvAllCards.adapter = allCardsAdapter
+
+        binding.buttonRefill.setOnClickListener {
+            val quantity = binding.etQuantity.text.toString().toDouble()
+            if (quantity > 0){
+                viewModel.onQuantitySelected(quantity)
+                viewModel.onRefillClicked()
+            } else {
+                Toast.makeText(requireActivity(), "Enter valid value", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.cardsStateFlow.collect { listOfCards ->
+                    allCardsAdapter.updateData(listOfCards)
+                }
+            }
+        }
     }
 }

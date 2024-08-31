@@ -6,6 +6,7 @@ import androidx.room.Query
 import androidx.room.Update
 import com.kuxln.bankingapp.data.room.entity.ClientEntity
 
+//insert into client values(1, "login", "password", 0,"Kulesh", "Andrii", 0, "address", 0, 0, 0, 0)
 @Dao
 interface ClientDAO {
 

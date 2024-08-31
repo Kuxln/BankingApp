@@ -6,5 +6,6 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "purchase_type")
 data class PurchaseTypeEntity(
-    @PrimaryKey val purchaseTypeName: String,
+    @PrimaryKey val purchaseTypeId: String,
+    @ColumnInfo(name = "purchase_type_name") val purchaseTypeName: String,
 )

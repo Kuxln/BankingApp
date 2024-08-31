@@ -18,8 +18,8 @@ import java.util.Date
         ),
         ForeignKey(
             entity = PurchaseTypeEntity::class,
-            parentColumns = arrayOf("purchaseTypeName"),
-            childColumns = arrayOf("purchaseTypeName"),
+            parentColumns = arrayOf("purchaseTypeId"),
+            childColumns = arrayOf("purchaseTypeId"),
             onUpdate = ForeignKey.CASCADE,
             onDelete = ForeignKey.CASCADE,
         )
@@ -28,7 +28,7 @@ import java.util.Date
 data class PurchaseEntity(
     @PrimaryKey val purchaseId: Int = 0,
     val bankAccountId: Int,
-    val purchaseTypeName: String,
+    val purchaseTypeId: Int,
     @ColumnInfo(name = "info") val info: String? = null,
     @ColumnInfo(name = "amount") val amount: Double,
     @ColumnInfo(name = "date") val dateMillis: Long,
