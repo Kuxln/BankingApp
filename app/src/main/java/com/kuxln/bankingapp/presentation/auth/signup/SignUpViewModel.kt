@@ -8,28 +8,31 @@ import com.kuxln.bankingapp.data.room.dao.PurchaseTypeDAO
 import com.kuxln.bankingapp.data.room.dao.RefillTypeDAO
 import com.kuxln.bankingapp.domain.usecases.auth.SignUpUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SignUpViewModel @Inject constructor (
+class SignUpViewModel @Inject constructor(
     private val signUpUseCase: SignUpUseCase,
     purchaseTypeDAO: PurchaseTypeDAO,
     creditTypeDAO: CreditTypeDAO,
     depositTypeDAO: DepositTypeDAO,
     refillTypeDAO: RefillTypeDAO,
-): ViewModel() {
+) : ViewModel() {
 
     private val _uiState = MutableSharedFlow<Boolean>(1)
     val uiState = _uiState.asSharedFlow()
 
     init {
-        purchaseTypeDAO.insert()
-        creditTypeDAO.insert()
-        depositTypeDAO.insert()
-        refillTypeDAO.insert()
+        viewModelScope.launch(Dispatchers.IO) {
+            purchaseTypeDAO.insert()
+            creditTypeDAO.insert()
+            depositTypeDAO.insert()
+            refillTypeDAO.insert()
+        }
     }
 
     fun onSignUp(email: String, password: String) {
