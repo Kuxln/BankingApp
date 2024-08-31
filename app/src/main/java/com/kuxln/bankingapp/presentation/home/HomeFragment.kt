@@ -18,6 +18,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
+    private var clientId: Int? = null
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var homeCardAdapter: HomeCardAdapter
 
@@ -27,13 +28,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         binding.rvAllCards.adapter = homeCardAdapter
         LinearSnapHelper().attachToRecyclerView(binding.rvAllCards)
 
-
         binding.buttonAllCardsAndAccounts.setOnClickListener {
-            //todo
-            val action = HomeFragmentDirections.homeDestToAllCardsDest(1)
-            findNavController().navigate(action)
+            clientId?.let {
+                val action = HomeFragmentDirections.homeDestToAllCardsDest(it)
+                findNavController().navigate(action)
+            }
         }
 
+        setupCollectors()
+    }
+
+    private fun setupCollectors() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.cardsStateFlow.collect { listOfCards ->
@@ -41,5 +46,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                 }
             }
         }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.clientIdFlow.collect { clientId ->
+                    clientId?.let {
+                        this@HomeFragment.clientId = it
+                    } ?: navigateToSignIn()
+                }
+            }
+        }
+    }
+
+    private fun navigateToSignIn() {
+        System.err.println("navigateToSignIn()")
+        val action = HomeFragmentDirections.actionHomeDestToSignInFragment()
+        findNavController().navigate(action)
     }
 }

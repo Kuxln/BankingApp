@@ -1,6 +1,7 @@
 package com.kuxln.bankingapp.presentation
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.navigation.ActivityNavigator
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity() {
 
     fun onDestinationChanged() {
         configureToolbarVisibility()
+        configureBottomNavVisibility()
     }
 
     private fun setupNavController() {
@@ -40,22 +42,41 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationBar.setupWithNavController(navController)
     }
 
-    private fun configureToolbarVisibility() = with(binding) {
-        if (navController.currentDestination?.id == R.id.home_dest || navController.currentDestination?.id == R.id.services_dest) {
-            hideToolbarNavigationIcon()
+    private fun configureToolbarVisibility() {
+        when (navController.currentDestination?.id) {
+            R.id.home_dest -> hideToolbarNavigationIcon()
+            R.id.services_dest -> hideToolbarNavigationIcon()
+            R.id.sign_in_dest -> hideToolbarNavigationIcon()
+            R.id.sign_up_dest -> hideToolbarNavigationIcon()
+            else -> showToolbarNavigationIcon()
+        }
+    }
+
+    private fun configureBottomNavVisibility() {
+        if (navController.currentDestination?.id == R.id.sign_in_dest || navController.currentDestination?.id == R.id.sign_up_dest) {
+            hideBottomNav()
         } else {
-            showToolbarNavigationIcon()
+            showBottomNav()
         }
     }
 
     private fun showToolbarNavigationIcon() = with(binding) {
-        toolbar.navigationIcon = AppCompatResources.getDrawable(this@MainActivity, R.drawable.ic_24_arrow_back)
+        toolbar.navigationIcon =
+            AppCompatResources.getDrawable(this@MainActivity, R.drawable.ic_24_arrow_back)
         toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
     }
 
+    private fun showBottomNav() = with(binding) {
+        bottomNavigationBar.visibility = View.VISIBLE
+    }
+
     private fun hideToolbarNavigationIcon() = with(binding) {
         toolbar.navigationIcon = null
+    }
+
+    private fun hideBottomNav() = with(binding) {
+        bottomNavigationBar.visibility = View.GONE
     }
 }

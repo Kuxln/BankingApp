@@ -1,12 +1,13 @@
 package com.kuxln.bankingapp.data.repository.implementation
 
+import com.kuxln.bankingapp.data.datastore.DataStore
 import com.kuxln.bankingapp.data.repository.base.ClientRepository
 import com.kuxln.bankingapp.data.room.dao.ClientDAO
 import com.kuxln.bankingapp.data.room.entity.ClientEntity
 import com.kuxln.bankingapp.data.room.exception.ClientAlreadyExistsException
 import com.kuxln.bankingapp.data.room.exception.ClientNotExistsException
 import com.kuxln.bankingapp.data.room.exception.PhoneNumberNotValidException
-import com.kuxln.bankingapp.data.util.getHash
+import com.kuxln.bankingapp.data.util.hashing
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -14,22 +15,36 @@ import javax.inject.Singleton
 
 @Singleton
 class ClientRepositoryImpl @Inject constructor(
-    private val dao: ClientDAO
+    private val dao: ClientDAO,
+    private val dataStore: DataStore,
 ) : ClientRepository {
 
     override suspend fun signUp(client: ClientEntity) {
+        System.err.println(client.password.hashing())
         val clientFromDB = dao.findClientByLogin(client.login)
         if (clientFromDB != null) throw ClientAlreadyExistsException()
+        System.err.println("after ClientAlreadyExistsException")
         dao.createClient(
             client.copy(
-                password = client.password.getHash()
+                password = client.password.hashing()
             )
         )
+        System.err.println("after dao.createClient()")
+        dao.findClientByLogin(client.login)?.clientId?.let {
+            System.err.println("inside dataStore.saveClientId(it)")
+            dataStore.saveClientId(it)
+        }
+        System.err.println("after dataStore.saveClientId(it)")
     }
 
     override suspend fun signIn(login: String, password: String): Int {
-        val clientFromDB = dao.findClientByLoginAndPassword(login, password.getHash())
+        System.err.println("${login}, ${password.hashing()}")
+        System.err.println("${login}, ${password.hashing()}")
+        System.err.println("${login}, ${password.hashing()}")
+        System.err.println("${login}, ${password.hashing()}")
+        val clientFromDB = dao.findClientByLoginAndPassword(login, password.hashing())
             ?: throw ClientNotExistsException()
+            dataStore.saveClientId( clientFromDB.clientId)
         return clientFromDB.clientId
     }
 
@@ -37,7 +52,7 @@ class ClientRepositoryImpl @Inject constructor(
         val clientFromDB = dao.findClientByLogin(login) ?: throw ClientNotExistsException()
         dao.updateClient(
             clientFromDB.copy(
-                password = newPassword.getHash()
+                password = newPassword.hashing()
             )
         )
     }
@@ -61,7 +76,7 @@ class ClientRepositoryImpl @Inject constructor(
         if (clientFromDB != null) {
             dao.updateClient(
                 clientFromDB.copy(
-                    password = newPassword.getHash()
+                    password = newPassword.hashing()
                 )
             )
         } else {
