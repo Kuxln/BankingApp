@@ -18,8 +18,8 @@ import java.util.Date
         ),
         ForeignKey(
             entity = CreditTypeEntity::class,
-            parentColumns = arrayOf("creditTypeName"),
-            childColumns = arrayOf("creditTypeName"),
+            parentColumns = arrayOf("creditTypeId"),
+            childColumns = arrayOf("creditTypeId"),
             onUpdate = ForeignKey.CASCADE,
             onDelete = ForeignKey.CASCADE,
         )
@@ -28,7 +28,7 @@ import java.util.Date
 data class CreditEntity(
     @PrimaryKey(autoGenerate = true) val creditId: Int = 0,
     val bankAccountId: Int,
-    val creditTypeName: String,
+    val creditTypeId: Int,
     @ColumnInfo(name = "cost") val cost: Double,
     @ColumnInfo(name = "start_date") val startDateMillis: Long,
     @ColumnInfo(name = "end_date") val endDateMillis: Long? = null,

@@ -6,6 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "credit_type")
 data class CreditTypeEntity(
-    @PrimaryKey val creditTypeName: String,
+    @PrimaryKey val creditTypeId: Int,
+    @ColumnInfo(name = "credit_type_name") val creditTypeName: String,
     @ColumnInfo(name = "credit_rate") val creditRate: Double,
 )

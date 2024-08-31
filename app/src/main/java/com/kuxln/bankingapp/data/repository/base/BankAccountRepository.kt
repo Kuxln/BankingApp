@@ -21,6 +21,10 @@ interface BankAccountRepository {
 
     suspend fun withdraw(bankAccountNumber: Long, quantity: Double)
 
+    suspend fun createCredit(bankAccountId: Int, quantity: Double)
+
+    suspend fun createDeposit(bankAccountId: Int, quantity: Double)
+
     suspend fun createBankAccount(clientId: Int, colorId: Int)
 
     suspend fun closeBankAccount(bankAccountNumber: Long)

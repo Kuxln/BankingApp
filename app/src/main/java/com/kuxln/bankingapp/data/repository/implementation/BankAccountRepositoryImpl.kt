@@ -43,6 +43,14 @@ class BankAccountRepositoryImpl @Inject constructor(
         dao.withdraw(bankAccountNumber, quantity)
     }
 
+    override suspend fun createCredit(bankAccountId: Int, quantity: Double) {
+        dao.refill(bankAccountId, quantity)
+    }
+
+    override suspend fun createDeposit(bankAccountId: Int, quantity: Double) {
+        dao.withdraw(bankAccountId, quantity)
+    }
+
     override suspend fun createBankAccount(clientId: Int, colorId: Int) {
         val newBankAccount = BankAccountEntity(
             clientId = clientId,

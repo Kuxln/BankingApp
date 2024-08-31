@@ -98,6 +98,10 @@
             android:name="client_id"
             app:argType="integer" />
 
+        <action
+            android:id="@+id/credits_dest_to_open_credit_dest"
+            app:destination="@id/open_credit_dest" />
+
     </fragment>
 
     <fragment
@@ -109,6 +113,10 @@
         <argument
             android:name="client_id"
             app:argType="integer" />
+
+        <action
+            android:id="@+id/deposits_dest_to_open_deposit_dest"
+            app:destination="@id/open_deposit_dest" />
 
     </fragment>
 
@@ -145,6 +153,29 @@
         <argument
             android:name="client_id"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/open_credit_dest"
+        android:name="com.kuxln.bankingapp.presentation.services.credits.opencredit.OpenCreditFragment"
+        android:label="OpenCreditFragment"
+        tools:layout="@layout/fragment_create_credit">
+
+        <argument
+            android:name="client_id"
+            app:argType="integer" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/open_deposit_dest"
+        android:name="com.kuxln.bankingapp.presentation.services.deposits.opendeposit.OpenDepositFragment"
+        android:label="OpenDepositFragment"
+        tools:layout="@layout/fragment_create_deposit">
+
+        <argument
+            android:name="client_id"
+            app:argType="integer" />
+
     </fragment>
 
 </navigation>
