@@ -8,5 +8,5 @@ import androidx.room.Query
 interface PurchaseTypeDAO {
 
     @Query("insert into purchase_type values(1,\"Зняття грошей\")")
-    fun insert()
+    suspend fun insert()
 }

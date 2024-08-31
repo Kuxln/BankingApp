@@ -8,5 +8,5 @@ import androidx.room.Query
 interface RefillTypeDAO {
 
     @Query("insert into refill_type values(1,\"Поповнення\")")
-    fun insert()
+    suspend fun insert()
 }

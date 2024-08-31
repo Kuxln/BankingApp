@@ -2,6 +2,7 @@ package com.kuxln.bankingapp.presentation.auth.signup
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.kuxln.bankingapp.data.repository.EntityTypesRepository
 import com.kuxln.bankingapp.data.room.dao.CreditTypeDAO
 import com.kuxln.bankingapp.data.room.dao.DepositTypeDAO
 import com.kuxln.bankingapp.data.room.dao.PurchaseTypeDAO
@@ -17,10 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
     private val signUpUseCase: SignUpUseCase,
-    purchaseTypeDAO: PurchaseTypeDAO,
-    creditTypeDAO: CreditTypeDAO,
-    depositTypeDAO: DepositTypeDAO,
-    refillTypeDAO: RefillTypeDAO,
+    private val entityTypesRepository: EntityTypesRepository,
 ) : ViewModel() {
 
     private val _uiState = MutableSharedFlow<Boolean>(1)
@@ -28,10 +26,7 @@ class SignUpViewModel @Inject constructor(
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            purchaseTypeDAO.insert()
-            creditTypeDAO.insert()
-            depositTypeDAO.insert()
-            refillTypeDAO.insert()
+            entityTypesRepository.inject()
         }
     }
 

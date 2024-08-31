@@ -38,4 +38,5 @@ class EntityTypesModule {
     fun provideDepositTypeDao(database: BankDatabase): DepositTypeDAO {
         return database.depositTypeDao()
     }
+
 }
