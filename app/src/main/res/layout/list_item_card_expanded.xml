@@ -24,37 +24,40 @@
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Universal Card"
                 android:textColor="@color/white"
                 android:textSize="14sp"
-                android:textStyle="bold"
-                android:text="Universal Card" />
+                android:textStyle="bold" />
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_on_card_card_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="4149 **** **** 1234"
                 android:textColor="@color/white"
                 android:textSize="10sp"
-                android:textStyle="bold"
-                android:layout_marginTop="4dp"
-                android:text="4149 **** **** 1234" />
+                android:textStyle="bold" />
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_on_card_expiration_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="05/30"
                 android:textColor="@color/white"
                 android:textSize="10sp"
-                android:textStyle="bold"
-                android:layout_marginTop="4dp"
-                android:text="05/30" />
+                android:textStyle="bold" />
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_on_card_money_quantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:textStyle="bold"
                 android:layout_marginTop="8dp"
-                android:text="100 UAH" />
+                android:text="100 UAH"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -63,27 +66,27 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginStart="12dp">
+        android:layout_marginStart="12dp"
+        android:orientation="vertical">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_card_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="4149 **** **** 1234"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:text="4149 **** **** 1234" />
+            android:textStyle="bold" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_money_quantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:text="100 UAH"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:text="100 UAH" />
+            android:textStyle="bold" />
 
     </LinearLayout>
 

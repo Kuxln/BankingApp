@@ -15,7 +15,7 @@ class BankAccountRepositoryImpl @Inject constructor(
 
     override suspend fun countBankAccounts(): Int = dao.countBankAccounts()
 
-    override suspend fun getNewBankAccountNumber(): Long = 4149_0000_0000_0000 + countBankAccounts() + 1
+    override suspend fun getNewBankAccountNumber(): Long = 4149_6090_0000_0000 + countBankAccounts() + 1
 
     override fun getAllBankAccounts(clientId: Int): Flow<List<BankAccountEntity>> {
         return dao.getAllBankAccounts(clientId)

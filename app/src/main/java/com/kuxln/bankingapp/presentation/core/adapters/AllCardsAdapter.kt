@@ -1,4 +1,4 @@
-package com.kuxln.bankingapp.presentation.home.allcards
+package com.kuxln.bankingapp.presentation.core.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,19 +9,28 @@ import com.kuxln.bankingapp.databinding.ListItemCardExpandedBinding
 
 class AllCardsAdapter(
     private var dataSet: List<BankAccountEntity>,
+    private val onClick: (selectedCardId: Int) -> Unit = {},
 ) : RecyclerView.Adapter<AllCardsAdapter.CardExpandedViewHolder>() {
 
     inner class CardExpandedViewHolder(
         private val binding: ListItemCardExpandedBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(position: Int) {
-            val balanceMetadata = "${dataSet[position].balance.toInt()} UAH"
-//            val cardBackgroundColor = Color.GREEN
-//
-//            binding.cardView.setCardBackgroundColor(cardBackgroundColor)
-            binding.tvCardNumber.text = dataSet[position].bankAccountNumber.toString()
-            binding.tvMoneyQuantity.text = balanceMetadata
+        private val context = binding.root.context
+
+        fun bind(bankAccountEntity: BankAccountEntity) = with(binding) {
+            val balanceMetadata = "${bankAccountEntity.balance.toInt()} UAH"
+            val cardBackgroundColor = context.getColor(bankAccountEntity.colorId)
+
+            root.setOnClickListener{ onClick(bankAccountEntity.bankAccountId) }
+
+            cardView.setCardBackgroundColor(cardBackgroundColor)
+            tvCardNumber.text = bankAccountEntity.bankAccountNumber.toString()
+            tvMoneyQuantity.text = balanceMetadata
+
+            tvOnCardCardNumber.text = balanceMetadata
+            tvOnCardExpirationDate.text = "06/2033"
+            tvOnCardMoneyQuantity.text = balanceMetadata
         }
     }
 
@@ -60,6 +69,6 @@ class AllCardsAdapter(
     override fun getItemCount(): Int = dataSet.size
 
     override fun onBindViewHolder(holder: CardExpandedViewHolder, position: Int) {
-        holder.bind(position)
+        holder.bind(dataSet[position])
     }
 }

@@ -1,0 +1,32 @@
+package com.kuxln.bankingapp.presentation.home.allcards
+
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.kuxln.bankingapp.data.repository.base.BankAccountRepository
+import com.kuxln.bankingapp.data.room.entity.BankAccountEntity
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+@HiltViewModel
+class AllCardsViewModel @Inject constructor(
+    private val bankAccountRepository: BankAccountRepository,
+    savedStateHandle: SavedStateHandle,
+): ViewModel() {
+
+    private val clientId: Int = savedStateHandle["client_id"] ?: throw IllegalArgumentException()
+
+    private val _cardsStateFlow = MutableSharedFlow<List<BankAccountEntity>>(1)
+    val cardsStateFlow = _cardsStateFlow.asSharedFlow()
+
+    init {
+        viewModelScope.launch {
+            bankAccountRepository.getAllBankAccounts(clientId).collect { dataSet ->
+                _cardsStateFlow.emit(dataSet)
+            }
+        }
+    }
+}

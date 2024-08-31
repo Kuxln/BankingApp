@@ -5,12 +5,9 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kuxln.bankingapp.R
 import com.kuxln.bankingapp.data.room.entity.BankAccountEntity
-import com.kuxln.bankingapp.databinding.FragmentAboutClientBinding
-import com.kuxln.bankingapp.databinding.FragmentCreditsBinding
-import com.kuxln.bankingapp.databinding.FragmentDepositsBinding
 import com.kuxln.bankingapp.databinding.FragmentWithdrawBinding
 import com.kuxln.bankingapp.presentation.core.ui.BaseFragment
-import com.kuxln.bankingapp.presentation.home.allcards.AllCardsAdapter
+import com.kuxln.bankingapp.presentation.core.adapters.AllCardsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
