@@ -1,11 +1,11 @@
-package com.kuxln.bankingapp.presentation.services.refill
+package com.kuxln.bankingapp.presentation.services.withdraw
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kuxln.bankingapp.data.room.entity.BankAccountEntity
 import com.kuxln.bankingapp.domain.usecases.bankaccount.GetAllBankAccountsUseCase
-import com.kuxln.bankingapp.domain.usecases.refill.RefillUseCase
+import com.kuxln.bankingapp.domain.usecases.purchase.WithdrawUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -14,9 +14,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RefillViewModel @Inject constructor(
+class WithdrawViewModel @Inject constructor(
     private val getAllBankAccountsUseCase: GetAllBankAccountsUseCase,
-    private val refillUseCase: RefillUseCase,
+    private val withdrawUseCase: WithdrawUseCase,
     savedStateHandle: SavedStateHandle,
 ): ViewModel() {
 
@@ -25,8 +25,8 @@ class RefillViewModel @Inject constructor(
     private val _cardsStateFlow = MutableSharedFlow<List<BankAccountEntity>>(1)
     val cardsStateFlow = _cardsStateFlow.asSharedFlow()
 
-    private val state = RefillViewState()
-    private val _uiStateFlow = MutableSharedFlow<RefillViewState>(1)
+    private val state = WithdrawViewState()
+    private val _uiStateFlow = MutableSharedFlow<WithdrawViewState>(1)
     val uiStateFlow = _uiStateFlow.asSharedFlow()
 
     init {
@@ -45,10 +45,10 @@ class RefillViewModel @Inject constructor(
         state.selectedQuantity = quantity
     }
 
-    fun onRefillClicked() {
+    fun onWithdrawClicked() {
         viewModelScope.launch(Dispatchers.IO) {
             state.selectedCardId?.let {
-                refillUseCase(it, state.selectedQuantity)
+                withdrawUseCase(it, state.selectedQuantity)
                 state.isSuccess = true
                 _uiStateFlow.emit(state)
             }

@@ -7,13 +7,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.navigation.fragment.findNavController
 import com.kuxln.bankingapp.R
-import com.kuxln.bankingapp.data.room.entity.BankAccountEntity
 import com.kuxln.bankingapp.databinding.FragmentRefillBinding
-import com.kuxln.bankingapp.presentation.core.ui.BaseFragment
 import com.kuxln.bankingapp.presentation.core.adapters.AllCardsAdapter
+import com.kuxln.bankingapp.presentation.core.ui.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -47,6 +45,17 @@ class RefillFragment : BaseFragment<FragmentRefillBinding>(R.layout.fragment_ref
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.cardsStateFlow.collect { listOfCards ->
                     allCardsAdapter.updateData(listOfCards)
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiStateFlow.collect { state ->
+                    if (state.isSuccess) {
+                        Toast.makeText(requireActivity(), "Success", Toast.LENGTH_SHORT).show()
+                        findNavController().popBackStack()
+                    }
                 }
             }
         }
