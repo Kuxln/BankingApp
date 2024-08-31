@@ -16,13 +16,13 @@
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Deposit type:"
+            android:text="Credit type:"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_deposit_type_name"
+            android:id="@+id/tv_credit_type_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Standard"
@@ -43,13 +43,13 @@
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Deposit rate:"
+            android:text="Credit rate:"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_deposit_rate"
+            android:id="@+id/tv_credit_rate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="16%"
@@ -69,13 +69,13 @@
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Amount:"
+            android:text="Cost:"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_deposit_amount"
+            android:id="@+id/tv_credit_cost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="100 UAH"

@@ -10,9 +10,9 @@ import java.util.Date
     tableName = "deposit",
     foreignKeys = [
         ForeignKey(
-            entity = BankAccountEntity::class,
-            parentColumns = arrayOf("bankAccountId"),
-            childColumns = arrayOf("bankAccountId"),
+            entity = ClientEntity::class,
+            parentColumns = arrayOf("clientId"),
+            childColumns = arrayOf("clientId"),
             onUpdate = ForeignKey.CASCADE,
             onDelete = ForeignKey.CASCADE,
         ),
@@ -27,7 +27,7 @@ import java.util.Date
 )
 data class DepositEntity(
     @PrimaryKey(autoGenerate = true) val depositId: Int = 0,
-    val bankAccountId: Int,
+    val clientId: Int,
     val depositTypeId: Int,
     @ColumnInfo(name = "amount") val amount: Double,
     @ColumnInfo(name = "start_date") val startDateMillis: Long,

@@ -28,7 +28,7 @@ class AllCardsAdapter(
             tvCardNumber.text = bankAccountEntity.bankAccountNumber.toString()
             tvMoneyQuantity.text = balanceMetadata
 
-            tvOnCardCardNumber.text = balanceMetadata
+            tvOnCardCardNumber.text = bankAccountEntity.bankAccountNumber.toString()
             tvOnCardExpirationDate.text = "06/2033"
             tvOnCardMoneyQuantity.text = balanceMetadata
         }

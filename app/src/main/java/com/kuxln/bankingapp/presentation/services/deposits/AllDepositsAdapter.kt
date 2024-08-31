@@ -14,16 +14,14 @@ import com.kuxln.bankingapp.databinding.ListItemDepositBinding
 class AllDepositsAdapter(
     private var dataSet: List<DepositEntity>,
     private val onLongPress: (selectedDepositId: Int) -> Unit = {},
-) : RecyclerView.Adapter<AllDepositsAdapter.CardExpandedViewHolder>() {
+) : RecyclerView.Adapter<AllDepositsAdapter.DepositViewHolder>() {
 
-    inner class CardExpandedViewHolder(
+    inner class DepositViewHolder(
         private val binding: ListItemDepositBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        private val context = binding.root.context
-
         fun bind(depositEntity: DepositEntity) = with(binding) {
-            val depositRate = "${layoutPosition + 2} %"
+            val depositRate = "${14 + (layoutPosition * 2)} %"
             val amount = "${depositEntity.amount} UAH"
 
             root.setOnLongClickListener {
@@ -63,15 +61,15 @@ class AllDepositsAdapter(
         diffResult.dispatchUpdatesTo(this)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardExpandedViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DepositViewHolder {
         val binding =
             ListItemDepositBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return CardExpandedViewHolder(binding)
+        return DepositViewHolder(binding)
     }
 
     override fun getItemCount(): Int = dataSet.size
 
-    override fun onBindViewHolder(holder: CardExpandedViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DepositViewHolder, position: Int) {
         holder.bind(dataSet[position])
     }
 }

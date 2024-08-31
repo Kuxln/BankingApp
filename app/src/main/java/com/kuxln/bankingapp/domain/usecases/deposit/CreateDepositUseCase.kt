@@ -9,8 +9,8 @@ class CreateDepositUseCase @Inject constructor(
     private val depositRepository: DepositRepository,
 ) {
 
-    suspend operator fun invoke(bankAccountId: Int, quantity: Double, depositRate: Int) {
+    suspend operator fun invoke(clientId: Int, bankAccountId: Int, quantity: Double, depositRate: Int) {
         bankAccountRepository.createDeposit(bankAccountId, quantity)
-        depositRepository.createDeposit(bankAccountId, quantity, depositRate)
+        depositRepository.createDeposit(clientId, quantity, depositRate)
     }
 }

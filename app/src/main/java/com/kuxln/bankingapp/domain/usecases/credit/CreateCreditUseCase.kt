@@ -9,8 +9,13 @@ class CreateCreditUseCase @Inject constructor(
     private val creditRepository: CreditRepository,
 ) {
 
-    suspend operator fun invoke(bankAccountId: Int, quantity: Double, creditRate: Int) {
+    suspend operator fun invoke(
+        bankAccountId: Int,
+        clientId: Int,
+        quantity: Double,
+        creditRate: Int
+    ) {
         bankAccountRepository.createCredit(bankAccountId, quantity)
-        creditRepository.createCredit(bankAccountId, quantity, creditRate)
+        creditRepository.createCredit(clientId, quantity, creditRate)
     }
 }

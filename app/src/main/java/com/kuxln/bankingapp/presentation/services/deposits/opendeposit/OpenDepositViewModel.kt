@@ -52,7 +52,7 @@ class OpenDepositViewModel @Inject constructor(
     fun onOpenDepositClicked() {
         viewModelScope.launch(Dispatchers.IO) {
             state.selectedCardId?.let {
-                createDepositUseCase(it, state.selectedQuantity, state.selectedDepositRate)
+                createDepositUseCase(it, clientId, state.selectedQuantity, state.selectedDepositRate)
                 state.isSuccess = true
                 _uiStateFlow.emit(state)
             }

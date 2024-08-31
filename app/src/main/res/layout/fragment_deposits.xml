@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_cards_count"
+        android:id="@+id/tv_deposits_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
@@ -19,25 +19,25 @@
         tools:text="X deposits in total" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_all_cards"
+        android:id="@+id/rv_all_deposits"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clipToPadding="false"
         android:paddingVertical="16dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@id/button_to_add_new_card"
-        app:layout_constraintTop_toBottomOf="@id/tv_cards_count" />
+        app:layout_constraintBottom_toTopOf="@id/button_to_open_new_deposit"
+        app:layout_constraintTop_toBottomOf="@id/tv_deposits_count" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_to_add_new_card"
+        android:id="@+id/button_to_open_new_deposit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/main_blue"
+        android:backgroundTint="@color/main_deposit"
         android:text="Open new deposit"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rv_all_cards" />
+        app:layout_constraintTop_toBottomOf="@id/rv_all_deposits" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
