@@ -13,6 +13,8 @@ interface ClientRepository {
 
     fun getClientById(clientId: Int): Flow<ClientEntity?>
 
+    suspend fun updateClient(clientEntity: ClientEntity)
+
     suspend fun changeLogin(clientId: Int, newLogin: String)
 
     suspend fun changePassword(clientId: Int, newPassword: String)

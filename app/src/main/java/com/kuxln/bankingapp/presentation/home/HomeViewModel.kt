@@ -21,7 +21,7 @@ class HomeViewModel @Inject constructor(
     val cardsStateFlow = _cardsStateFlow.asSharedFlow()
 
     private var clientId: Int? = null
-    private val _clientIdFlow = MutableSharedFlow<Int?>(0)
+    private val _clientIdFlow = MutableSharedFlow<Int?>(1)
     val clientIdFlow = _clientIdFlow.asSharedFlow()
 
     init {

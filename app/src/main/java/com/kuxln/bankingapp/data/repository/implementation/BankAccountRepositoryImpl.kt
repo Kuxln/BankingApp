@@ -54,7 +54,7 @@ class BankAccountRepositoryImpl @Inject constructor(
     override suspend fun createBankAccount(clientId: Int, colorId: Int) {
         val newBankAccount = BankAccountEntity(
             clientId = clientId,
-            bankAccountNumber = 4149_0000_0000_0000 + countBankAccounts() + 1,
+            bankAccountNumber = getNewBankAccountNumber(),
             startDateMillis = System.currentTimeMillis(),
             colorId = colorId
         )
