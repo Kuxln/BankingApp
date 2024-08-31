@@ -1,6 +1,7 @@
 package com.kuxln.bankingapp.data.repository.base
 
 import com.kuxln.bankingapp.data.room.entity.ClientEntity
+import kotlinx.coroutines.flow.Flow
 
 interface ClientRepository {
 
@@ -9,6 +10,8 @@ interface ClientRepository {
     suspend fun signIn(login: String, password: String): Int
 
     suspend fun changePasswordOnForgot(login: String, newPassword: String)
+
+    fun getClientById(clientId: Int): Flow<ClientEntity?>
 
     suspend fun changeLogin(clientId: Int, newLogin: String)
 

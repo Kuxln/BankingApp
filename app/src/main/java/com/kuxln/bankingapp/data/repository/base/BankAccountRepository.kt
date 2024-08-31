@@ -9,13 +9,21 @@ interface BankAccountRepository {
 
     suspend fun getNewBankAccountNumber(): Long
 
-    suspend fun getAllBankAccounts(clientId: Int): Flow<List<BankAccountEntity>>
+    fun getAllBankAccounts(clientId: Int): Flow<List<BankAccountEntity>>
 
-    suspend fun refill(bankAccountId: Int, quantity: Int)
+    fun getBankAccountByNumber(bankAccountNumber: Long): Flow<BankAccountEntity?>
 
-    suspend fun withdraw(bankAccountId: Int,quantity: Int)
+    suspend fun refill(bankAccountId: Int, quantity: Double)
+
+    suspend fun refill(bankAccountNumber: Long, quantity: Double)
+
+    suspend fun withdraw(bankAccountId: Int, quantity: Double)
+
+    suspend fun withdraw(bankAccountNumber: Long, quantity: Double)
 
     suspend fun createBankAccount(clientId: Int, colorId: Int)
 
     suspend fun closeBankAccount(bankAccountNumber: Long)
+
+    suspend fun transfer(bankAccountNumberFrom: Long, bankAccountNumberTo: Long, quantity: Double)
 }

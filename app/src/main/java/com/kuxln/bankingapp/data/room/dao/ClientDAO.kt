@@ -1,9 +1,7 @@
 package com.kuxln.bankingapp.data.room.dao
 
-import androidx.room.ColumnInfo
 import androidx.room.Dao
 import androidx.room.Insert
-import androidx.room.PrimaryKey
 import androidx.room.Query
 import androidx.room.Update
 import com.kuxln.bankingapp.data.room.entity.ClientEntity

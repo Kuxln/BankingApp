@@ -4,9 +4,11 @@ import com.kuxln.bankingapp.data.repository.base.ClientRepository
 import com.kuxln.bankingapp.data.room.dao.ClientDAO
 import com.kuxln.bankingapp.data.room.entity.ClientEntity
 import com.kuxln.bankingapp.data.room.exception.ClientAlreadyExistsException
-import com.kuxln.bankingapp.data.room.exception.ClientNotFoundException
+import com.kuxln.bankingapp.data.room.exception.ClientNotExistsException
 import com.kuxln.bankingapp.data.room.exception.PhoneNumberNotValidException
 import com.kuxln.bankingapp.data.util.getHash
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -27,17 +29,21 @@ class ClientRepositoryImpl @Inject constructor(
 
     override suspend fun signIn(login: String, password: String): Int {
         val clientFromDB = dao.findClientByLoginAndPassword(login, password.getHash())
-            ?: throw ClientNotFoundException()
+            ?: throw ClientNotExistsException()
         return clientFromDB.clientId
     }
 
     override suspend fun changePasswordOnForgot(login: String, newPassword: String) {
-        val clientFromDB = dao.findClientByLogin(login) ?: throw ClientNotFoundException()
+        val clientFromDB = dao.findClientByLogin(login) ?: throw ClientNotExistsException()
         dao.updateClient(
             clientFromDB.copy(
                 password = newPassword.getHash()
             )
         )
+    }
+
+    override fun getClientById(clientId: Int): Flow<ClientEntity?> {
+        return flow { emit(dao.findClientById(clientId)) }
     }
 
     override suspend fun changeLogin(clientId: Int, newLogin: String) {
@@ -59,7 +65,7 @@ class ClientRepositoryImpl @Inject constructor(
                 )
             )
         } else {
-            throw ClientNotFoundException()
+            throw ClientNotExistsException()
         }
     }
 
@@ -138,7 +144,7 @@ class ClientRepositoryImpl @Inject constructor(
         clientId: Int,
         updateFun: (clientFromDB: ClientEntity) -> Unit
     ) {
-        val clientFromDB = dao.findClientById(clientId) ?: throw ClientNotFoundException()
+        val clientFromDB = dao.findClientById(clientId) ?: throw ClientNotExistsException()
         updateFun(clientFromDB)
     }
 }
